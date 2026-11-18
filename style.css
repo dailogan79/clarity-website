@@ -1,0 +1,91 @@
+/* Clarity website: the same icy blue and lilac look as the apps. One stylesheet, no scripts, no outside fonts or trackers. */
+:root {
+  --navy: #254b91;
+  --ink: #263a54;
+  --muted: #5b6f86;
+  --blue: #3b82f6;
+  --red: #e0344f;
+  --card: rgba(255, 255, 255, 0.72);
+  --edge: rgba(37, 75, 145, 0.14);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  line-height: 1.55;
+  background: linear-gradient(160deg, #c9e0f7 0%, #d8d6f3 38%, #a9c6ea 70%, #8fcfd0 100%) fixed;
+  min-height: 100vh;
+}
+a { color: var(--navy); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+header.site { padding: 26px 0 8px; }
+header.site .wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+.mark { font-size: 64px; display: block; font-weight: 800; color: #2a74d9; text-decoration: none; letter-spacing: -0.5px; line-height: 1; }
+.mark .i { position: relative; display: inline-block; }
+.mark .stem { display: inline-block; clip-path: inset(0.38em 0 0 0); }
+.mark .i::after { content: ""; position: absolute; left: 50%; top: 0.18em; width: 0.18em; height: 0.18em; margin-left: -0.09em; border-radius: 50%; background: var(--red); }
+nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 20px; }
+nav a { text-decoration: none; font-weight: 600; color: var(--navy); }
+nav a[aria-current="page"] { border-bottom: 3px solid var(--blue); padding-bottom: 2px; }
+
+.hero { padding: 22px 0 18px; text-align: left; }
+.hero h1 { font-size: clamp(30px, 6vw, 46px); line-height: 1.12; margin: 0 0 14px; color: var(--navy); }
+.hero p { font-size: 19px; max-width: 640px; margin: 0 0 12px; color: var(--ink); }
+.soon { display: inline-block; background: var(--navy); color: #fff; font-weight: 700; padding: 8px 16px; border-radius: 22px; margin-top: 6px; }
+
+h1.page { font-size: clamp(28px, 5vw, 38px); color: var(--navy); margin: 30px 0 6px; }
+h2 { font-size: 22px; color: var(--navy); margin: 0 0 8px; }
+.lead { font-size: 18px; color: var(--muted); margin: 0 0 18px; }
+
+.card { background: var(--card); border: 1px solid var(--edge); border-left: 6px solid var(--blue); border-radius: 20px; padding: 18px 22px; margin: 0 0 16px; box-shadow: 0 6px 18px rgba(37, 75, 145, 0.10); }
+.card.teal { border-left-color: #86c8c8; }
+.card.lilac { border-left-color: #b4b0e8; }
+.card.red { border-left-color: var(--red); }
+.card ul, .card ol { margin: 6px 0 4px; padding-left: 22px; }
+.card li { margin: 5px 0; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid .card { margin: 0; }
+
+table { width: 100%; border-collapse: collapse; margin: 8px 0 4px; }
+th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--edge); vertical-align: top; }
+th { color: var(--navy); }
+
+.badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.store { display: inline-flex; flex-direction: column; justify-content: center; min-width: 190px; padding: 10px 20px; border-radius: 14px; background: #1b2740; color: #fff; opacity: 0.55; cursor: default; line-height: 1.2; }
+.store small { font-size: 12px; letter-spacing: 0.4px; }
+.store strong { font-size: 20px; }
+.steps-list { list-style: none; margin: 8px 0 2px; padding: 0; }
+.steps-list li { display: flex; gap: 12px; align-items: flex-start; margin: 0 0 12px; }
+.num { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.video { max-width: 520px; max-height: 190px; aspect-ratio: 16 / 9; border: 2px dashed rgba(37, 75, 145, 0.35); border-radius: 18px; background: rgba(255, 255, 255, 0.45); display: flex; align-items: center; justify-content: center; color: var(--muted); font-weight: 700; margin: 6px 0 8px; }
+.note { font-size: 15px; color: var(--muted); }
+.todo { background: #fff4c9; border: 1px dashed #d9a400; padding: 1px 6px; border-radius: 6px; font-weight: 600; }
+
+footer.site { margin-top: 34px; padding: 22px 0 40px; border-top: 1px solid var(--edge); font-size: 15px; color: var(--muted); }
+footer.site a { margin-right: 16px; }
+@media (max-width: 520px) { .hide-sm { display: none; } .card { padding: 16px 16px; } nav a { font-size: 14.5px; } .mark { font-size: 50px; } nav { gap: 6px 14px; } }
+
+/* screen galleries (passenger and driver pages) */
+.shots { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x proximity; padding: 4px 4px 14px; margin: 10px 0 0; align-items: flex-start; -webkit-overflow-scrolling: touch; }
+.shots figure { margin: 0; text-align: center; flex: 0 0 180px; scroll-snap-align: start; }
+.shots img { width: 100%; max-width: 260px; height: auto; border-radius: 22px; border: 1px solid var(--edge); box-shadow: 0 8px 22px rgba(37, 75, 145, 0.18); }
+.shots figcaption { font-size: 15px; color: var(--ink); margin-top: 8px; }
+.shots figcaption strong { display: block; color: var(--navy); }
+
+/* driver calculator */
+.calc { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin: 12px 0; }
+.calc label { display: block; font-weight: 600; color: var(--navy); font-size: 15px; }
+.calc input { display: block; width: 100%; margin-top: 6px; padding: 11px 12px; font-size: 18px; border: 1px solid var(--edge); border-radius: 12px; background: #fff; color: var(--ink); }
+.calcout { font-size: 19px; font-weight: 700; color: var(--navy); background: rgba(255,255,255,.75); border-radius: 14px; padding: 14px 16px; margin: 6px 0 10px; }
+.calc select { display: block; width: 100%; margin-top: 6px; padding: 11px 12px; font-size: 18px; border: 1px solid var(--edge); border-radius: 12px; background: #fff; color: var(--ink); }
+
+.shares { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 12px; }
+a.share { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--blue); color: #fff; }
+a.share svg { width: 22px; height: 22px; fill: currentColor; }
+a.share:hover, a.share:focus-visible { background: var(--red); }
+.grid.after { margin-bottom: 30px; }
+.tablewrap { overflow-x: auto; }
+.tablewrap table { min-width: 560px; font-size: 15px; }
