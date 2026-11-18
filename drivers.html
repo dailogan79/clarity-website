@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>For drivers: Clarity</title>
 <meta name="description" content="Driving with Clarity in Swansea: a flat commission, 98.5% of every tip kept, clear earnings, and an app made for drivers.">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
 <header class="site"><div class="wrap">
@@ -81,62 +81,157 @@
 
   <section class="card teal" id="calc">
     <h2>Still not sure? See where you would come out</h2>
-    <p>Compare what you keep with Uber to what the same trips would pay you with Clarity. The sums happen on your own phone or computer. Nothing you type is sent anywhere or saved.</p>
-    <div class="calc">
+    <p>Compare what you keep with your current company to what the same driving would pay you with Clarity. The sums happen on your own phone or computer. Nothing you type is sent anywhere or saved.</p>
+    <div class="calc calcpick">
       <label>What do you want to compare?
         <select id="c_mode">
-          <option value="trip">One trip</option>
+          <option value="trip">One trip, side by side</option>
           <option value="week">A week of driving</option>
           <option value="month">A month of driving</option>
         </select>
       </label>
     </div>
-    <p class="note"><strong>Use UberX figures with no discounts or promotions.</strong> That is the fair like-for-like comparison. Take them from your Uber trip details or weekly statement.</p>
-    <div class="calc">
-      <label><span id="l_gross">Fare the passenger paid (£)</span><input id="c_gross" inputmode="decimal" placeholder="e.g. 20"></label>
-      <label><span id="l_fee">What Uber took from that fare, their fee and anything else deducted (£)</span><input id="c_fee" inputmode="decimal" placeholder="e.g. 5.50"></label>
-      <label id="w_wrap"><span id="l_per">Weeks you drive in a year</span><input id="c_per" inputmode="decimal" value="46"></label>
+
+    <div id="blk_trip">
+      <p class="note"><strong>Use a single trip with the standard fare, with no discounts or promotions.</strong> That is the fair like-for-like comparison. Take the figures from that trip's details in your current company's driver app.</p>
+      <div class="tri">
+        <div class="tri-col tri-trip">
+          <h4>The trip</h4>
+          <div class="tri-line"><span class="lab">Distance (miles)</span><span class="val"><input id="t_miles" inputmode="decimal" placeholder="e.g. 4.2" aria-label="Distance in miles"></span></div>
+          <div class="tri-line"><span class="lab">Time (minutes)</span><span class="val"><input id="t_mins" inputmode="decimal" placeholder="e.g. 15" aria-label="Time taken in minutes"></span></div>
+          <div class="tri-line"><span class="lab">Day</span><span class="val">
+            <select id="t_day" aria-label="Day the trip started">
+              <option value="0">Monday</option><option value="1" selected>Tuesday</option><option value="2">Wednesday</option><option value="3">Thursday</option>
+              <option value="4">Friday</option><option value="5">Saturday</option><option value="6">Sunday</option>
+              <option value="bh">Bank holiday</option><option value="xmas">Christmas, Boxing Day or New Year's Day</option>
+            </select></span></div>
+          <div class="tri-line"><span class="lab">Start time</span><span class="val"><input id="t_time" type="time" value="12:00" aria-label="Time the trip started"></span></div>
+          <div class="tri-line"><span class="lab">Surcharge or priority fare?</span><span class="val"><select id="t_extra" aria-label="Was there a surcharge, priority fee or other extra on the fare"><option value="no" selected>No</option><option value="yes">Yes</option></select></span></div>
+          <div class="tri-line xf" style="display:none"><span class="lab">Extra charged to customer (£)</span><span class="val"><input id="t_xpass" inputmode="decimal" placeholder="e.g. 2.50" aria-label="Extra charged to the customer in pounds"></span></div>
+          <div class="tri-line xf" style="display:none"><span class="lab">Extra you were paid (£)</span><span class="val"><input id="t_xdrv" inputmode="decimal" placeholder="e.g. 1.50" aria-label="Extra paid to you in pounds"></span></div>
+          <p class="note" id="extra_note" style="display:none">We take the extra off both sides, so the comparison is on the standard fare.</p>
+        </div>
+        <div class="tri-col tri-left">
+          <h4>Your current company</h4>
+          <div class="tri-line"><span class="lab">Customer paid</span><span class="val"><input id="t_paid" inputmode="decimal" placeholder="0.00" aria-label="Customer paid in pounds"></span></div>
+          <div class="tri-line"><span class="lab">Driver pay</span><span class="val"><input id="t_drv" inputmode="decimal" placeholder="0.00" aria-label="Driver pay in pounds"></span></div>
+          <div class="tri-line"><span class="lab">Driver share</span><span class="val" id="o_share_now">-</span></div>
+        </div>
+        <div class="tri-col tri-right">
+          <h4>Clarity</h4>
+          <div class="tri-line"><span class="val" id="o_fare">-</span><span class="lab">Customer would pay</span></div>
+          <div class="tri-line"><span class="val" id="o_mine">-</span><span class="lab">Driver would get</span></div>
+          <div class="tri-line"><span class="val" id="o_share_new">-</span><span class="lab">Driver share</span></div>
+        </div>
+      </div>
+      <p class="note calckey"><span class="kg">Green</span> means Clarity is better than your current company, <span class="kr">red</span> means worse. For the customer, a lower price is better.</p>
+      <div class="calcout calcsm" id="c_out" aria-live="polite">Fill in the boxes to see the difference.</div>
+      <p class="note">Clarity's side is worked out from the trip's miles, minutes and start time with our own rates: a pick-up fee, a rate per mile (the first mile is free on short trips) and a rate per minute that depends on the day and time. It is the normal meter fare. A fixed-price quote adds a safety margin, so it would be higher. What you earn with Clarity depends on how busy we are and how quickly we can grow, so this is not a promise. Clarity takes 15% of the fare and nothing from tips (you keep 98.5%, after the 1.5% card fee). Fuel, car costs and tax are the same either way and are not included.</p>
     </div>
-    <div class="calcout" id="c_out" aria-live="polite">Fill in the first two boxes to see the difference.</div>
-    <p class="note">This assumes the same trips at the same fares, so it compares what each company takes. It is not a promise of your earnings: what you earn with Clarity depends on how busy we are and how quickly we can grow. Clarity takes 15% of the fare and nothing from tips (you keep 98.5%, after the 1.5% card fee). Fuel, car costs and tax are the same either way and are not included. Our fares can differ from Uber's, so your real figures may differ.</p>
+
+    <div id="blk_period" style="display:none">
+      <p class="note"><strong>Use standard fares, with no discounts or promotions.</strong> That is the fair like-for-like comparison. Take the figures from your weekly or monthly statement. This one assumes the same trips at the same fares, so it compares what each company takes from them.</p>
+      <div class="calc">
+        <label><span id="p_lg">Total fares your passengers paid in a week (£)</span><input id="p_gross" inputmode="decimal" placeholder="e.g. 800"></label>
+        <label><span id="p_lf">What your current company took from those fares in that week, their fees and anything else deducted (£)</span><input id="p_fee" inputmode="decimal" placeholder="e.g. 220"></label>
+        <label><span id="p_lp">Weeks you drive in a year</span><input id="p_per" inputmode="decimal" value="46"></label>
+      </div>
+      <div class="calcout calcsm" id="p_out" aria-live="polite">Fill in the first two boxes to see the difference.</div>
+      <p class="note">This is not a promise of your earnings: what you earn with Clarity depends on how busy we are and how quickly we can grow. Clarity takes 15% of the fare and nothing from tips (you keep 98.5%, after the 1.5% card fee). Fuel, car costs and tax are the same either way and are not included. Our fares can differ from your current company's, so your real figures may differ.</p>
+    </div>
   </section>
 <script>
 (function () {
-  var RATE = 0.15;
+  var R = {"pickup":350,"std":58.35333333333334,"long":56.35333333333334,"thr":10.0,"free":1.0,"comm":0.15,"grid":[[47.5,42.5,45.0,47.5],[47.5,42.5,45.0,47.5],[47.5,42.5,45.0,47.5],[47.5,42.5,45.0,47.5],[47.5,42.5,47.5,55.0],[55.0,42.5,47.5,55.0],[55.0,42.5,47.5,47.5]],"bh":[57.5,50.0,50.0,57.5],"xmas":72.5};
+  var RATE = R.comm;
   var MODES = {
-    trip:  { g: "Fare the passenger paid (£)", f: "What Uber took from that fare, their fee and anything else deducted (£)", gp: "e.g. 20", fp: "e.g. 5.50", per: null },
-    week:  { g: "Total fares your passengers paid in a week (£)", f: "What Uber took from those fares in that week, their fees and anything else deducted (£)", gp: "e.g. 800", fp: "e.g. 220", per: { label: "Weeks you drive in a year", val: "46", unit: "week", n: "weeks" } },
-    month: { g: "Total fares your passengers paid in a month (£)", f: "What Uber took from those fares in that month, their fees and anything else deducted (£)", gp: "e.g. 3400", fp: "e.g. 935", per: { label: "Months you drive in a year", val: "11", unit: "month", n: "months" } }
+    week:  { g: "Total fares your passengers paid in a week (£)", f: "What your current company took from those fares in that week, their fees and anything else deducted (£)", gp: "e.g. 800", fp: "e.g. 220", per: { label: "Weeks you drive in a year", val: "46", unit: "week", n: "weeks" } },
+    month: { g: "Total fares your passengers paid in a month (£)", f: "What your current company took from those fares in that month, their fees and anything else deducted (£)", gp: "e.g. 3400", fp: "e.g. 935", per: { label: "Months you drive in a year", val: "11", unit: "month", n: "months" } }
   };
   function el(id) { return document.getElementById(id); }
   function num(id) { var v = parseFloat(String(el(id).value).replace(/[^0-9.]/g, "")); return isNaN(v) ? 0 : v; }
   function gbp(x) { return "£" + x.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-  function setMode() {
-    var m = MODES[el("c_mode").value];
-    el("l_gross").textContent = m.g; el("l_fee").textContent = m.f;
-    el("c_gross").placeholder = m.gp; el("c_fee").placeholder = m.fp;
-    el("c_gross").value = ""; el("c_fee").value = "";
-    if (m.per) { el("w_wrap").style.display = ""; el("l_per").textContent = m.per.label; el("c_per").value = m.per.val; }
-    else { el("w_wrap").style.display = "none"; }
-    run();
+  function pc(x) { return x.toFixed(1) + "%"; }
+  function half(x) { return Math.floor(x + 0.5 + 1e-9); }
+  function tierRate(day, mins) {
+    if (day === "xmas") return R.xmas;
+    var band = mins < 390 ? 0 : mins < 1110 ? 1 : mins < 1350 ? 2 : 3;
+    return day === "bh" ? R.bh[band] : R.grid[parseInt(day, 10)][band];
   }
-  function run() {
-    var key = el("c_mode").value, m = MODES[key];
-    var g = num("c_gross"), f = num("c_fee"), out = el("c_out");
+  function clarityFarePence(miles, minutes, day, startMins) {
+    var long = miles > R.thr;
+    var std = long ? Math.min(miles, R.thr) : Math.max(0, miles - R.free);
+    var red = long ? miles - R.thr : 0;
+    return half(R.pickup + std * R.std + red * R.long + minutes * tierRate(day, startMins));
+  }
+
+  /* ---- one trip, side by side ---- */
+  function tint(id, better, worse) { var e = el(id); e.className = "val" + (better ? " good" : worse ? " bad" : ""); }
+  function clearTrip(out) {
+    ["o_fare", "o_mine", "o_share_now", "o_share_new"].forEach(function (id) { el(id).textContent = "-"; });
+    ["o_fare", "o_mine", "o_share_new"].forEach(function (id) { tint(id, false, false); });
+    out.textContent = "Fill in the boxes to see the difference.";
+  }
+  function runTrip() {
+    var out = el("c_out"), yes = el("t_extra").value === "yes";
+    Array.prototype.forEach.call(document.querySelectorAll("#blk_trip .xf"), function (x) { x.style.display = yes ? "" : "none"; });
+    el("extra_note").style.display = yes ? "" : "none";
+    var xp = yes ? num("t_xpass") : 0, xd = yes ? num("t_xdrv") : 0;
+    var paid = num("t_paid") - xp, drv = num("t_drv") - xd, miles = num("t_miles"), mins = num("t_mins");
+    var tm = String(el("t_time").value || "").split(":"), start = tm.length === 2 ? parseInt(tm[0], 10) * 60 + parseInt(tm[1], 10) : -1;
+    if (num("t_paid") <= 0 || paid <= 0 || drv < 0 || drv > paid || miles <= 0 || mins <= 0 || start < 0) { clearTrip(out); return; }
+    var fare = clarityFarePence(miles, mins, el("t_day").value, start) / 100;
+    var cut = half(fare * 100 * R.comm) / 100, mine = fare - cut;
+    var shareNow = drv / paid * 100, shareNew = mine / fare * 100;
+    el("o_fare").textContent = gbp(fare); el("o_mine").textContent = gbp(mine);
+    el("o_share_now").textContent = pc(shareNow); el("o_share_new").textContent = pc(shareNew);
+    var dDriver = mine - drv, dPass = fare - paid;
+    tint("o_fare", dPass < -0.004, dPass > 0.004);
+    tint("o_mine", dDriver > 0.004, dDriver < -0.004);
+    tint("o_share_new", shareNew > shareNow + 0.04, shareNew < shareNow - 0.04);
+    var line = "<strong>Summary:</strong> your current company paid you " + gbp(drv) + " of the " + gbp(paid) + " the customer paid, which is " + pc(shareNow) + ". On Clarity the same trip (" + miles + " miles, " + mins + " minutes) would cost the customer " + gbp(fare) + ", and you would get " + gbp(mine) + ", which is " + pc(shareNew) + ". ";
+    if (dDriver > 0.004) line += "<span class=gd>That is " + gbp(dDriver) + " more for you on this trip.</span>"; else if (dDriver < -0.004) line += "<span class=bd>On these figures Clarity would pay you " + gbp(-dDriver) + " less on this trip.</span>"; else line += "The same for you.";
+    if (dPass > 0.004) line += " <span class=bd>The customer would pay " + gbp(dPass) + " more.</span>"; else if (dPass < -0.004) line += " <span class=gd>The customer would pay " + gbp(-dPass) + " less.</span>"; else line += " The customer would pay the same.";
+    if (dDriver > 0.004 && dPass < -0.004) line += " <span class=gd><strong>Better for both of you.</strong></span>";
+    if (yes && (xp > 0 || xd > 0)) line += " (The extra was left out of both sides.)";
+    out.innerHTML = line;   /* line is built only from our own words and numbers */
+  }
+
+  /* ---- a week or a month ---- */
+  function setPeriod() {
+    var m = MODES[el("c_mode").value];
+    if (!m) return;
+    el("p_lg").textContent = m.g; el("p_lf").textContent = m.f; el("p_lp").textContent = m.per.label;
+    el("p_gross").placeholder = m.gp; el("p_fee").placeholder = m.fp;
+    el("p_gross").value = ""; el("p_fee").value = ""; el("p_per").value = m.per.val;
+    runPeriod();
+  }
+  function runPeriod() {
+    var m = MODES[el("c_mode").value], out = el("p_out");
+    if (!m) return;
+    var g = num("p_gross"), f = num("p_fee");
     if (g <= 0 || f < 0 || f > g) { out.textContent = "Fill in the first two boxes to see the difference."; return; }
-    var they = g - f, us = g * (1 - RATE), diff = us - they, pct = f / g * 100;
-    var span = key === "trip" ? "on this trip" : "a " + m.per.unit;
-    var line = "With Uber you keep " + gbp(they) + " " + span + " (they take " + pct.toFixed(1) + "% of the fare). With Clarity you would keep " + gbp(us) + " (we take 15%). ";
+    var they = g - f, us = g * (1 - RATE), diff = us - they, pct = f / g * 100, span = "a " + m.per.unit;
+    var line = "With your current company you keep " + gbp(they) + " " + span + " (they take " + pct.toFixed(1) + "% of the fare). With Clarity you would keep " + gbp(us) + " (we take 15%). ";
     if (diff > 0) {
       line += "That is " + gbp(diff) + " more " + span + ".";
-      if (m.per) { var n = num("c_per"); if (n > 0) line += " Over " + n + " " + m.per.n + " that is about " + gbp(diff * n) + "."; }
+      var n = num("p_per"); if (n > 0) line += " Over " + n + " " + m.per.n + " that is about " + gbp(diff * n) + ".";
     } else if (diff < 0) line += "On these figures Clarity would pay " + gbp(-diff) + " less " + span + ".";
     else line += "The same.";
     out.textContent = line;
   }
-  el("c_mode").addEventListener("change", setMode);
-  ["c_gross", "c_fee", "c_per"].forEach(function (id) { el(id).addEventListener("input", run); });
-  setMode();
+
+  /* ---- the drop-down switches between the calculators ---- */
+  function showMode() {
+    var trip = el("c_mode").value === "trip";
+    el("blk_trip").style.display = trip ? "" : "none";
+    el("blk_period").style.display = trip ? "none" : "";
+    if (trip) runTrip(); else setPeriod();
+  }
+  el("c_mode").addEventListener("change", showMode);
+  ["t_paid", "t_drv", "t_miles", "t_mins", "t_day", "t_time", "t_extra", "t_xpass", "t_xdrv"].forEach(function (id) { el(id).addEventListener("input", runTrip); el(id).addEventListener("change", runTrip); });
+  ["p_gross", "p_fee", "p_per"].forEach(function (id) { el(id).addEventListener("input", runPeriod); });
+  showMode();
 })();
 </script>
 

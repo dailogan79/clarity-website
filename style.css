@@ -89,3 +89,43 @@ a.share:hover, a.share:focus-visible { background: var(--red); }
 .grid.after { margin-bottom: 30px; }
 .tablewrap { overflow-x: auto; }
 .tablewrap table { min-width: 560px; font-size: 15px; }
+
+/* trip calculator: three smaller cards (the trip | your current company | Clarity), built like the rest of the page: glass cards, coloured edge, 20px corners, soft shadow, 16px text */
+.calcpick { grid-template-columns: minmax(0, 340px); }
+.calcpick select { font-family: inherit; }
+.tri { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; margin: 12px 0 14px; align-items: start; }
+.tri-col { position: relative; background: var(--card); border: 1px solid var(--edge); border-left: 6px solid var(--blue); border-radius: 20px; padding: 14px 16px 8px; box-shadow: 0 6px 18px rgba(37, 75, 145, 0.10); min-width: 0; }
+.tri-left { border-left-color: #b4b0e8; }
+.tri-right { border-left-color: #86c8c8; }
+.tri-right::before { content: ""; position: absolute; left: -15px; top: 4px; bottom: 4px; width: 2px; background: var(--navy); border-radius: 2px; }
+.tri-col h4 { margin: 0 0 4px; font-size: 18px; color: var(--navy); }
+.tri-right h4 { text-align: right; }
+.tri-line { display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 7px 0; box-sizing: border-box; border-top: 1px solid var(--edge); min-width: 0; }
+.tri .lab { flex: 1; min-width: 0; overflow-wrap: break-word; font-size: 15px; color: var(--ink); line-height: 1.3; }
+.tri-right .lab { text-align: right; }
+.tri .val { flex: 0 0 100px; width: 100px; height: 42px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--navy); white-space: nowrap; background: #fff; border: 1px solid var(--edge); border-radius: 12px; padding: 0 8px; }
+.tri .val:has(input), .tri .val:has(select) { padding: 0; border: 0; background: transparent; }
+.tri .val input, .tri .val select { display: block; width: 100%; height: 42px; box-sizing: border-box; margin: 0; padding: 0 8px; font-family: inherit; font-size: 16px; font-weight: 700; text-align: center; border: 1px solid var(--edge); border-radius: 12px; background: #fff; color: var(--ink); }
+.tri .val select { font-weight: 400; font-size: 15px; text-align: left; padding: 0 4px; }
+.tri-trip .val input[type=time] { font-weight: 400; font-size: 15px; padding: 0 4px; }
+.tri-trip .note { margin: 6px 0 4px; font-size: 14px; }
+.calcsm { font-size: 16px; font-weight: 400; line-height: 1.55; color: var(--ink); background: var(--card); border: 1px solid var(--edge); border-left: 6px solid #86c8c8; border-radius: 20px; padding: 14px 18px; margin: 14px 0; box-shadow: 0 6px 18px rgba(37, 75, 145, 0.10); }
+.calcsm strong { color: var(--navy); }
+@media (max-width: 860px) {
+  .tri { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .tri-right::before { display: none; }
+}
+@media (max-width: 560px) {
+  .tri-col { padding: 12px 12px 6px; border-left-width: 5px; border-radius: 16px; }
+  .tri .val { flex: 0 0 96px; width: 96px; }
+  .calcsm { border-radius: 16px; padding: 12px 14px; }
+}
+
+/* green = Clarity is better, red = worse (shown with colour, a tinted box and the words in the summary) */
+.tri .val.good { color: #0f7a4d; background: rgba(22,140,90,.12); border-color: rgba(22,140,90,.55); }
+.tri .val.bad { color: #c22340; background: rgba(224,52,79,.10); border-color: rgba(224,52,79,.55); }
+.calcsm .gd { color: #0f7a4d; font-weight: 700; }
+.calcsm .bd { color: #c22340; font-weight: 700; }
+.calckey { margin: 0 0 4px; font-size: 14px; }
+.calckey .kg { color: #0f7a4d; font-weight: 700; }
+.calckey .kr { color: #c22340; font-weight: 700; }
