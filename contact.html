@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://claritycabs.co.uk/contact.html">
 <meta property="og:image" content="https://claritycabs.co.uk/img/og-clarity.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
 <header class="site"><div class="wrap">
@@ -20,10 +20,15 @@
   <nav>
     <a href="/">Home</a>
     <a href="passengers.html">For passengers</a>
+    <a href="family.html">Family</a>
     <a href="drivers.html">For drivers</a>
     <a href="fares.html">Fares</a>
     <a href="cancellations.html">Cancellations</a>
     <a href="contact.html" aria-current="page">Contact</a>
+    <form class="search" role="search" onsubmit="return false">
+      <input type="search" id="site-search" placeholder="Search" aria-label="Search the site" autocomplete="off">
+      <div id="search-results" class="search-results" hidden></div>
+    </form>
   </nav>
 </div></header>
 
@@ -64,5 +69,6 @@
   <p>App, website and backend built with Claude, an AI assistant made by Anthropic.</p>
 </div></footer>
 <script data-goatcounter="https://claritycabs.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="search.js?v=20" defer></script>
 </body>
 </html>
